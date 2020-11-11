@@ -6,15 +6,20 @@ const Statistics = ({ stats }) => {
   let all = good+neutral+bad
 
   return (
-  <>
+    <>
     <h1>statistics</h1>
-    <p>Good {good}</p>
-    <p>Neutral {neutral}</p>
-    <p>Bad {bad}</p>
-    <p>all {all}</p>
-    <p>average {(good-bad)/(all)}</p>
-    <p>positive {good/(all) * 100}%</p>
-  </>
+    {
+      all === 0 ? <p>No feedback given</p> :
+      <div>
+        <p>Good {good}</p>
+        <p>Neutral {neutral}</p>
+        <p>Bad {bad}</p>
+        <p>all {all}</p>
+        <p>average {(good-bad)/(all)}</p>
+        <p>positive {good/(all) * 100}%</p>
+      </div> 
+    }
+    </>
   )
 }
 
