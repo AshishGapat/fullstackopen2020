@@ -7,9 +7,12 @@ const Button = ({ handleClick, text }) => {
   )
 }
 
-const Statistic = ({ text, value }) => {
+const Statistic = ({ text, value, style }) => {
   return (
-    <p>{text} {value}</p>
+    <tr>
+      <td style={style}>{text}</td>
+      <td style={style}>{value}</td>
+    </tr>
   ) 
 }
 
@@ -17,18 +20,26 @@ const Statistics = ({ stats }) => {
   const [ good, neutral, bad ] = stats
   let all = good+neutral+bad
 
+  const tableStyle = {
+    border: "1px solid black", 
+    borderCollapse: "collapse"
+  }
   return (
     <>
     <h1>statistics</h1>
     {
       all === 0 ? <p>No feedback given</p> :
       <>
-        <Statistic text="good" value={good} />
-        <Statistic text="neutral" value={neutral} />
-        <Statistic text="bad" value={bad} />
-        <Statistic text="all" value={all} />
-        <Statistic text="average" value={(good-bad)/all} />
-        <Statistic text="positive" value={`${good / (all) * 100}%`} />
+        <table style={tableStyle}>
+          <tbody>
+            <Statistic text="good" value={good} style={tableStyle}/>
+            <Statistic text="neutral" value={neutral} style={tableStyle}/>
+            <Statistic text="bad" value={bad} style={tableStyle}/>
+            <Statistic text="all" value={all} style={tableStyle}/>
+            <Statistic text="average" value={(good-bad)/all} style={tableStyle}/>
+            <Statistic text="positive" value={`${good / (all) * 100}%`} style={tableStyle}/>
+          </tbody>
+        </table>
       </> 
     }
     </>
